@@ -1,0 +1,7 @@
+{
+  "name": "newdebuger",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
