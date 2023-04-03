@@ -9,18 +9,19 @@
 <ion-content style="height: 500px;" >
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <jqxComboBox
+      <ion-col  class="center-combobox">
+        <jqxComboBox 
           (onSelect)="myComboBoxOnSelect($event)"
-          [width]="200"
-          [height]="25"
+          [width]="300"
+          [height]="35"
+          [placeHolder]="Search"
+          [dropDownWidth]="300"
           [source]="myData"
-          [selectedIndex]="0"
           [displayMember]="'imei'"
         ></jqxComboBox>
       </ion-col>
-      <ion-col size="3">
-        <div *ngIf="showSwipeModal" class="filter">
+      <ion-col size="3" *ngIf="showSwipeModal" class="filter1">
+        <div class="filter">
           <div>
             <ion-row >
               <ion-col
@@ -47,11 +48,7 @@
                 <ion-col size="10">
                     <ion-icon name="calendar" style="font-size:24px; float:center;"></ion-icon>
                     <ion-text style="padding-bottom: 10px;">Date Range</ion-text>
-                    <!-- {{"Date Range"}} -->
                 </ion-col>
-                <!-- <ion-col size="7" style="float:left;margin-left:-17px;">
-                    {{"Date Range"}}
-                </ion-col> -->
                 <ion-col size="5.5" class="calendinput">
                     <ion-input type="datetime-local" format="YYYY-MM-DDTHH:mm" [(ngModel)]='user.fromDate'
                         (click)="trackModal('from')" class="ion-no-padding" style=" width: 129px;
@@ -91,12 +88,19 @@
         <ion-card *ngIf="viewCard">
           <ion-card-header>RawData for {{ selectedItem.value }}</ion-card-header>
           <ion-card-content>
-            <ng-container *ngIf="listOfRawData.length > 0; else noRecords">
-            <ion-list *ngFor="let item of listOfRawData">
-              <ion-card>
-                <ion-card-content style="white-space: normal;">{{ item }}</ion-card-content>
-              </ion-card>
-            </ion-list>
+            <ng-container *ngIf="rawDataList.length > 0; else noRecords">
+              <ion-list>
+                <ion-item *ngFor="let timestamp of entryTime; let i = index;">
+                  <ion-card>
+                    <ion-card-header>
+                      {{ timestamp }}
+                    </ion-card-header>
+                    <ion-card-content>
+                      {{ rawDataList[i] }}
+                    </ion-card-content>
+                  </ion-card>
+                </ion-item>
+              </ion-list>
             </ng-container>
             <ng-template #noRecords>
               <p>No records found</p>
@@ -106,7 +110,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-  <ion-button ion-button icon-only class="scroll-top" (click)="scrollTop()">
+  <ion-button *ngIf="viewCard" ion-button icon-only class="scroll-top" (click)="scrollTop()">
     <ion-icon name="arrow-up"></ion-icon>
   </ion-button>
 </ion-content>

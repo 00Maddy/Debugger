@@ -177,7 +177,7 @@ map {
 }
 
 .filter{
- margin-left: 20px;
+ margin-left: 5px;
  width: 300px;
 }
 
@@ -186,3 +186,19 @@ map {
   bottom: 16px;
   right: 16px;
 }
+ion-toolbar {
+  --background: #4c8dff;
+  --color: white;
+}
+
+ion-col.filter1 {
+  background-color: #f1f1f1;
+  border-radius:10px;
+  align-items: center;
+}
+.center-combobox {
+  display: flex;
+  justify-content: center;
+}
+
+
